@@ -1,0 +1,27 @@
+{
+  "name": "InTouch_Tech_Assessment",
+  "version": "1.0.0",
+  "description": "Option 2: Visualization of data sets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swaroop42/InTouch-Tech-Assessment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swaroop42/InTouch-Tech-Assessment/issues"
+  },
+  "homepage": "https://github.com/swaroop42/InTouch-Tech-Assessment#readme",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "csv-parse": "^0.1.3",
+    "node-fs": "^0.1.7",
+    "request": "^2.60.0",
+    "request-promise": "^0.4.2",
+    "openlayers": "~3.0.0"
+  }
+}
