@@ -6,12 +6,10 @@ var initRoutes = function (app) {
 };
 
 var getGrowthBySector = function(req, res){
-	growth_logic.getGrowthBySector(req, function(data){
-		res.json(data);
-	});	
+	console.log('DVWS Received Request GET: ', req.originalUrl);
+	growth_logic.getGrowthBySector(req, res);
 };
 
 module.exports = {
 	initRoutes: initRoutes
 };
-

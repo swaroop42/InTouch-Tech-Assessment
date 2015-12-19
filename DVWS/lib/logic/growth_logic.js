@@ -2,21 +2,22 @@ var csvParser = require('csv-parse');
 var fs = require('node-fs');
 var bluebird = require('bluebird');
 
-var getGrowthBySector = function(req, callback){
-	var growthBySectorObj = {};
-	
+var getGrowthBySector = function(req, res){
 	var filePath = "../InTouch_Tech_Assessment/csv_files/dataset.csv";
 	
 	var dataRows = readCsvFile(filePath).toString().split(/\r?\n/);
-	
-	var industryType;
-	var sumGrHealth = 0;
-	var cntGrHealth = 0;
-	
 	dataRows.splice(0, 1);
 	
+	var industryType;
+	var totalRecordsCsv = dataRows.length;
+	var totalProcessedCount = 0;
+	var sumGrHealth = 0;
+	var cntGrHealth = 0;
+
 	return bluebird.resolve(dataRows)
 	.each(function(dataRow){
+		totalProcessedCount++;
+		
 		var dataColumns = dataRow.split(",");
 		
 		if(dataColumns.length <= 1){
@@ -24,22 +25,26 @@ var getGrowthBySector = function(req, callback){
 		}
 		
 		industryType = dataColumns[17];
-		console.log(industryType);
+		
 		if(industryType == "Health"){
 			cntGrHealth ++;
-			sumGrHealth += dataColumns[15];
+			sumGrHealth += parseInt(dataColumns[15]);
 		}	
 		
-		return;	
-	})
+		if(totalProcessedCount == totalRecordsCsv - 1){
+			var avgGrHealth = sumGrHealth/cntGrHealth;
 	
-	var avgGrHealth = sumGrHealth/cntGrHealth;
-	
-	growthBySectorObj = {
-		health: {"Health": avgGrHealth}
-	};
-	
-	callback(growthBySectorObj);
+			var growthBySectorObj = {
+				health: {
+					avgGrowth: avgGrHealth,
+					sector: "Health"
+				}
+			};
+			
+			console.log('DVWS Successfully Processed GET: ', req.originalUrl);
+			res.json(growthBySectorObj);
+		}
+	});
 }
 
 function readCsvFile(filePath){
@@ -49,4 +54,4 @@ function readCsvFile(filePath){
 
 module.exports = {
 	getGrowthBySector: getGrowthBySector
-}
+};
