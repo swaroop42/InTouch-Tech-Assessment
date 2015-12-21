@@ -10,7 +10,7 @@ var server = null;
 server = http.createServer(app);
 
 server.listen(config.dvws.port, function(){
-	console.log('Data Visualization Web Service (DVWS) Has Started On Port', config.dvws.port);
+	console.log('Data Visualization Web Service (DVWS) API Has Started On Port', config.dvws.port);
 });
 
 
@@ -37,8 +37,10 @@ app.get('/api/v1/*', function(req, res, next) {
 });
 
 var dvws = require('./DVWS/dvws.js');
+//var www = require('./WWW/www.js')
 
 app.use('/', [dvws]);
+//app.use('/', [dvws], [www]);
 
 //Case: No match for route, ERROR: 404
 app.use(function(err, req, res, next){

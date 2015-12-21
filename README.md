@@ -19,7 +19,7 @@
 		3. Show the information of a company with the highest revenue in any industry of the users choice
 		4. Show the relationship between number of workers in a company and revenue of a company for all companies in an industry of the users choice
 	
-	- The project uses a charting library on the front end to illustrate the data set	
+	- The project uses a charting library on the front end to illustrate the data set (This portion is not complete)
 	- The project uses REST API (Data Visualization Web Service, DVWS) as an independent client application in the back-end. 
 	  It sorts and processes the data sets and returns them to the front end as JSON objects
 	- The project also use Mocha and Chai libraries to run functional tests on the back-end DVWS API's routes and business logic
