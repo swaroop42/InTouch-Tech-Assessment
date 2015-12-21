@@ -10,7 +10,7 @@
 			https://public.tableau.com/s/resources?qt-overview_resources=1 
 	  under Business/The 2014 Inc. 5000
 	  
-	- It is stored in the project in the following location csv_files/dataset.csv
+	- The data set is stored in the project in the following location csv_files/dataset.csv
 	  
 	- The project aims to focus on the revenue and growth of the c companies in the list and 
 	  illustrate the date set in the following 4 ways:
@@ -24,21 +24,37 @@
 	  It sorts and processes the data sets and returns them to the front end as JSON objects
 	- The project also use Mocha and Chai libraries to run functional tests on the back-end DVWS API's routes and business logic
 
-### DVWS API
-	- The API runs on the following ip and port configurations
+## API Information
+	- The Data Visualization Web Service (DVWS) API runs on the following ip and port configurations
 		-> ip: localhost
 		-> port: 8000
 		
-	- Run app.js to start the Web Service API
+	- Run app.js to start the API
 	
 	- The API contains the following routes:
-		-> 
+		- http://localhost:8000/api/v1/growth/average_growth
+		- http://localhost:8000/api/v1/growth/highest_growth/:state
+		- http://localhost:8000/api/v1/revenue/highest_revenue/:industry
+		- http://localhost:8000/api/v1/revenue/revenue_workers/:industry
+	
 	  
 ## Installation And Use
 	- Link to GitHub Repo: git@github.com:swaroop42/InTouch-Tech-Assessment.git
 	- Download Project from GitHub
-	- Open project with editor of choice 
-	- Open file app.js in command prompt
-	- run command: npm install 
-	- This will install all packages and libraries for the project
-	- 
+	- Run Node express
+	- Naigate to home directory of the project
+	- Run the following command in console: 
+		-> npm install  
+	- This will install all dependency packages and libraries for the project
+	- Run the following command in console to start the DVWS API: 
+		-> node app.js 
+
+## Tests
+	- The Project contains automated unit tests written using Mocha and Chai libraries 
+	- The tests are contained under /tests/dvws_tests
+	- Read the following instructions to run the automated tests
+	  For example: To run the automated tests that are related to retrieving data related to growth
+		- Navigate to /tests/dvws_tests in console
+		- Run the following command to execute the automated test cases
+			> mocha growth_test.js
+			
