@@ -4,7 +4,7 @@ var bluebird = require('bluebird');
 var filePath = "../InTouch_Tech_Assessment/csv_files/dataset.csv";
 
 /*
-Function returns average growth for following sectors:
+This function returns average growth for following industries:
  - Health
  - Energy
  - IT Services
@@ -12,7 +12,7 @@ Function returns average growth for following sectors:
  - Government Services
  - Financial Services
 */
-var getGrowthBySector = function(req, res){
+var getAvgGrowthPerIndustry = function(req, res){
 	
 	var dataRows = readCsvFile(filePath).toString().split(/\r?\n/);
 	dataRows.splice(0, 1);
@@ -83,17 +83,63 @@ var getGrowthBySector = function(req, res){
 			var avgGrGov = sumGrGov/cntGrGov;
 			var avgGrFin = sumGrFin/cntGrFin;
 			
-			var growthBySectorObj = {
-				Health: {avgGrowth: avgGrHealth, sector: "Health"},
-				Energy: {avgGrowth: avgGrEnergy, sector: "Energy"},
-				IT: {avgGrowth: avgGrIT, sector: "IT Services"},
-				Engineering: {avgGrowth: avgGrEng, sector: "Engineering"},
-				Government: {avgGrowth: avgGrGov, sector: "Government Services"},
-				Finance: {avgGrowth: avgGrFin, sector: "Financial Services"}
+			var avgGrowthPerIndustryObj = {
+				Health: {Average_Growth: avgGrHealth, Industry: "Health"},
+				Energy: {Average_Growth: avgGrEnergy, Industry: "Energy"},
+				IT: {Average_Growth: avgGrIT, Industry: "IT Services"},
+				Engineering: {Average_Growth: avgGrEng, Industry: "Engineering"},
+				Government: {Average_Growth: avgGrGov, Industry: "Government Services"},
+				Finance: {Average_Growth: avgGrFin, Industry: "Financial Services"}
 			};
 			
 			console.log('DVWS Successfully Processed GET: ', req.originalUrl);
-			res.json(growthBySectorObj);
+			res.json(avgGrowthPerIndustryObj);
+		}
+	});
+}
+
+
+//This function processes and returns information of a company with highest growth in a state of users choice
+var getCompanyInfoForState = function(req, res){
+	
+	var dataRows = readCsvFile(filePath).toString().split(/\r?\n/);
+	dataRows.splice(0, 1);
+	
+	var stateName = "";
+	var topGrowth = 0;
+	var infoObj = {};
+	
+	var totalRecordsCsv = dataRows.length;
+	var totalProcessedCount = 0;
+	
+	return bluebird.resolve(dataRows)
+	.each(function(dataRow){
+		totalProcessedCount++;
+		
+		var dataColumns = dataRow.split(",");
+		
+		stateName = dataColumns[12];
+		
+		if(stateName == req.params.state){
+			if(topGrowth < parseInt(dataColumns[15])){
+				topGrowth = parseInt(dataColumns[15]);
+				
+				infoObj.Company = dataColumns[9];
+				infoObj.Industry = dataColumns[17];
+				infoObj.State = dataColumns[11];
+				infoObj.Metro = dataColumns[14];
+				infoObj.City = dataColumns[13];
+				infoObj.Growth = dataColumns[15];
+				infoObj.Revenue = dataColumns[16];	
+				infoObj.Workers = dataColumns[8];
+				infoObj.Rank = dataColumns[7];
+				infoObj.Id = dataColumns[6];			
+			}
+		}
+		
+		if(totalProcessedCount == totalRecordsCsv - 1){
+			console.log('DVWS Successfully Processed GET: ', req.originalUrl);
+			res.json(infoObj);
 		}
 	});
 }
@@ -105,5 +151,6 @@ function readCsvFile(filePath){
 }
 
 module.exports = {
-	getGrowthBySector: getGrowthBySector
+	getAvgGrowthPerIndustry: getAvgGrowthPerIndustry,
+	getCompanyInfoForState: getCompanyInfoForState
 };
