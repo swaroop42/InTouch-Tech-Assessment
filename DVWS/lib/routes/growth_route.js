@@ -4,7 +4,7 @@ var initRoutes = function (app) {
 	//This route returns average growth for following sectors Health, Energy, IT Services, Engineering, Government Services, Financial Services
 	app.get('/api/v1/growth/average_growth', getAvgGrowthPerIndustry);
 	
-	//This route returns information of  a company with highest growth in a state of users choice  
+	//This route returns information of a company with highest growth in a state of users choice  
 	//Pass state abbreviation as parameter
 	app.get('/api/v1/growth/highest_growth/:state', getCompanyInfoForState);
 };

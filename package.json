@@ -2,16 +2,16 @@
   "name": "InTouch_Tech_Assessment",
   "version": "1.0.0",
   "description": "Option 2: Visualization of data sets",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swaroop42/InTouch-Tech-Assessment.git"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "author": "Swaroop",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/swaroop42/InTouch-Tech-Assessment/issues"
   },
@@ -22,9 +22,14 @@
     "node-fs": "^0.1.7",
     "request": "^2.60.0",
     "request-promise": "^0.4.2",
-    "openlayers": "~3.0.0",
     "body-parser": "^1.12.0",
     "express": "^4.12.2",
     "restler": "^3.2.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
+    "chai-http": "^1.0.0"
   }
 }
