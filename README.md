@@ -16,7 +16,7 @@
 	  illustrate the date set in the following 4 ways:
 		1. Show the average growth of companies in the Health, Energy, IT Services, Engineering, Govern Services and Financial Services Industries
 		2. Show the information of the company with the highest growth in any state of the users choice
-		3. Show the information of a comapny with the highest revenue in any industry of the users choice
+		3. Show the information of a company with the highest revenue in any industry of the users choice
 		4. Show the relationship between number of workers in a company and revenue of a company for all companies in an industry of the users choice
 	
 	- The project uses a charting library on the front end to illustrate the data set	
@@ -32,10 +32,10 @@
 	- Run app.js to start the API
 	
 	- The API contains the following routes:
-		- http://localhost:8000/api/v1/growth/average_growth
-		- http://localhost:8000/api/v1/growth/highest_growth/:state
-		- http://localhost:8000/api/v1/revenue/highest_revenue/:industry
-		- http://localhost:8000/api/v1/revenue/revenue_workers/:industry
+		-> http://localhost:8000/api/v1/growth/average_growth
+		-> http://localhost:8000/api/v1/growth/highest_growth/:state
+		-> http://localhost:8000/api/v1/revenue/highest_revenue/:industry
+		-> http://localhost:8000/api/v1/revenue/revenue_workers/:industry
 	
 	  
 ## Installation And Use
@@ -44,17 +44,22 @@
 	- Run Node express
 	- Naigate to home directory of the project
 	- Run the following command in console: 
-		-> npm install  
+		> npm install  
 	- This will install all dependency packages and libraries for the project
 	- Run the following command in console to start the DVWS API: 
-		-> node app.js 
+		> node app.js 
 
 ## Tests
 	- The Project contains automated unit tests written using Mocha and Chai libraries 
 	- The tests are contained under /tests/dvws_tests
 	- Read the following instructions to run the automated tests
 	  For example: To run the automated tests that are related to retrieving data related to growth
-		- Navigate to /tests/dvws_tests in console
-		- Run the following command to execute the automated test cases
+		-> Navigate to /tests/dvws_tests in console
+		-> Run the following command to execute the automated test cases
 			> mocha growth_test.js
+	
+	- The DVWS API can also be tested using PostMan REST Client
+	- The test routes are contained in the Collections called DVWS API. 
+	- This is the link to to the Collections stored on PostMan REST Client
+		-> https://www.getpostman.com/collections/3368f829551cbfa6f608  
 			
